@@ -464,6 +464,9 @@ prompt_pure_setup() {
 	# [[ $UID -eq 0 ]] && prompt_pure_username='%F{white}%n%f%F{242}@%m%f'
 	[[ $UID -eq 0 ]] && prompt_pure_username='%F{white}%n%f%F{yellow}[@%m]%f'
 
+        # show screen session if adequat
+        [[ $STY ]] && prompt_pure_username="$prompt_pure_username%F{yellow}(${STY[(ws:.:)-1]})%f "
+
 	# if a virtualenv is activated, display it in grey
 	PROMPT='%(12V.%F{242}%12v%f .)'
 
