@@ -472,6 +472,9 @@ prompt_pure_setup() {
         zstyle ':prezto:module:editor:info:keymap:primary' format "${PURE_PROMPT_SYMBOL:-❯} "
         zstyle ':prezto:module:editor:info:keymap:alternate' format "%F{178}${PURE_PROMPT_SYMBOL:-❯} %f"
         PROMPT+='%(?.%F{green}.%F{red})%B$editor_info[keymap]%b%f'
+
+        # Make RPROMPT
+        RPROMPT="%1(j.%F{178}[%j].)%f"
 }
 
 prompt_pure_setup "$@"
