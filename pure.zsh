@@ -468,7 +468,7 @@ prompt_pure_setup() {
         [[ $STY ]] && prompt_pure_username="$prompt_pure_username%F{yellow}(${STY[(ws:.:)-1]})%f "
 
 	# if a virtualenv is activated, display it in grey
-	PROMPT='%(12V.%F{242}%12v%f .)'
+	PROMPT='%(12V.%F{178}V:%12v%f .)'
 
 	# prompt turns red if the previous command didn't exit with 0
 	# PROMPT+='%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
