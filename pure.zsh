@@ -115,7 +115,7 @@ prompt_pure_preprompt_render() {
 	typeset -gA prompt_pure_vcs_info
         local repo_name="${prompt_pure_vcs_info[pwd]##*/}"
 	if [[ -n $prompt_pure_vcs_info[branch] ]]; then
-		preprompt_parts+=("%F{071}$repo_name%f%F{$git_color}"'[${prompt_pure_vcs_info[branch]}%F{yellow}${prompt_pure_git_dirty}${prompt_pure_git_arrows}%f'"%F{$git_color}]%f")
+		preprompt_parts+=("%F{242}$repo_name%f%F{$git_color}"'[${prompt_pure_vcs_info[branch]}%F{yellow}${prompt_pure_git_dirty}${prompt_pure_git_arrows}%f'"%F{$git_color}]%f")
 	fi
 	# # Git pull/push arrows.
 	# if [[ -n $prompt_pure_git_arrows ]]; then
