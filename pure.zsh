@@ -113,15 +113,15 @@ prompt_pure_preprompt_render() {
 
 	# Add git branch and dirty status info.
 	typeset -gA prompt_pure_vcs_info
-        local repo_name="${prompt_pure_vcs_info[pwd]##*/}"
+        local repo_name="${prompt_pure_vcs_info[top]##*/}"
 	if [[ -n $prompt_pure_vcs_info[branch] ]]; then
 		preprompt_parts+=("%F{242}$repo_name%f%F{$git_color}"'[${prompt_pure_vcs_info[branch]}%F{yellow}${prompt_pure_git_dirty}${prompt_pure_git_arrows}%f'"%F{$git_color}]%f")
 	fi
 
 	# Set the path.
         max_path_chars=20
-        local repo_dir="$prompt_pure_vcs_info[pwd]"
-        local repo_subdir="${${$(pwd)/$prompt_pure_vcs_info[pwd]/}/\//}"
+        local repo_dir="$prompt_pure_vcs_info[top]"
+        local repo_subdir="${${$(pwd)/$prompt_pure_vcs_info[top]/}/\//}"
         if [[ $repo_name ]]; then
             if [[ $repo_subdir ]]; then
                 preprompt_parts+=("%F{071}%${max_path_chars}<...<$repo_subdir%<<%f")
