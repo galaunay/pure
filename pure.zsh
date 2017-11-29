@@ -117,10 +117,6 @@ prompt_pure_preprompt_render() {
 	if [[ -n $prompt_pure_vcs_info[branch] ]]; then
 		preprompt_parts+=("%F{242}$repo_name%f%F{$git_color}"'[${prompt_pure_vcs_info[branch]}%F{yellow}${prompt_pure_git_dirty}${prompt_pure_git_arrows}%f'"%F{$git_color}]%f")
 	fi
-	# # Git pull/push arrows.
-	# if [[ -n $prompt_pure_git_arrows ]]; then
-	# 	preprompt_parts+=('%F{cyan}${prompt_pure_git_arrows}%f')
-	# fi
 
 	# Set the path.
         max_path_chars=20
@@ -455,11 +451,9 @@ prompt_pure_setup() {
 	add-zsh-hook preexec prompt_pure_preexec
 
 	# show username@host if logged in through SSH
-	# [[ "$SSH_CONNECTION" != '' ]] && prompt_pure_username='%F{242}%n@%m%f'
 	[[ "$SSH_CONNECTION" != '' ]] && prompt_pure_username='%F{yellow}[%n@%m]%f'
 
 	# show username@host if root, with username in white
-	# [[ $UID -eq 0 ]] && prompt_pure_username='%F{white}%n%f%F{242}@%m%f'
 	[[ $UID -eq 0 ]] && prompt_pure_username='%F{white}%n%f%F{yellow}[@%m]%f'
 
         # show screen session if adequat
@@ -469,7 +463,6 @@ prompt_pure_setup() {
 	PROMPT='%(12V.%F{178}V:%12v%f .)'
 
 	# prompt turns red if the previous command didn't exit with 0
-	# PROMPT+='%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f '
         zstyle ':prezto:module:editor:info:keymap:primary' format "${PURE_PROMPT_SYMBOL:-❯} "
         zstyle ':prezto:module:editor:info:keymap:alternate' format "%F{178}${PURE_PROMPT_SYMBOL:-❯} %f"
         PROMPT+='%(?.%F{green}.%F{red})%B$editor_info[keymap]%b%f'
