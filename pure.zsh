@@ -121,7 +121,7 @@ prompt_pure_preprompt_render() {
 	# Set the path.
         max_path_chars=20
         local repo_dir="$prompt_pure_vcs_info[top]"
-        local repo_subdir="${${$(pwd)/$prompt_pure_vcs_info[top]/}/\//}"
+        local repo_subdir="${${$(pwd -P)/$prompt_pure_vcs_info[top]/}/\//}"
         if [[ $repo_name ]]; then
             if [[ $repo_subdir ]]; then
                 preprompt_parts+=("%F{071}%${max_path_chars}<...<$repo_subdir%<<%f")
