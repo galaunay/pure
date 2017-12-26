@@ -131,7 +131,7 @@ prompt_pure_preprompt_render() {
         fi
 
 	# Execution time.
-	[[ -n $prompt_pure_cmd_exec_time ]] && preprompt_parts+=('%F{yellow}${prompt_pure_cmd_exec_time}%f')
+	# [[ -n $prompt_pure_cmd_exec_time ]] && preprompt_parts+=('%F{yellow}${prompt_pure_cmd_exec_time}%f')
 
 	# Construct the new prompt with a clean preprompt.
 	local -ah ps1
