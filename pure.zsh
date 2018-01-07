@@ -111,6 +111,9 @@ prompt_pure_preprompt_render() {
 	# Username and machine, if applicable.
 	[[ -n $prompt_pure_username ]] && preprompt_parts+=('$prompt_pure_username')
 
+        # Virtual python env, if applicable
+	preprompt_parts+=('%(12V.%F{178} {%12v}%f.)')
+
 	# Add git branch and dirty status info.
 	typeset -gA prompt_pure_vcs_info
         local repo_name="${prompt_pure_vcs_info[top]##*/}"
@@ -459,16 +462,13 @@ prompt_pure_setup() {
         # show screen session if adequat
         [[ $STY ]] && prompt_pure_username="$prompt_pure_username%F{yellow}${STY[(ws:.:)-1]}%f"
 
-	# if a virtualenv is activated, display it in grey
-	PROMPT='%(12V.%F{178}V:%12v%f .)'
-
 	# prompt turns red if the previous command didn't exit with 0
         zstyle ':prezto:module:editor:info:keymap:primary' format "${PURE_PROMPT_SYMBOL:-❯} "
         zstyle ':prezto:module:editor:info:keymap:alternate' format "%F{178}${PURE_PROMPT_SYMBOL:-❯} %f"
-        PROMPT+='%(?.%F{green}.%F{red})%B$editor_info[keymap]%b%f'
+        PROMPT='%(?.%F{green}.%F{red})%B$editor_info[keymap]%b%f'
 
         # Make RPROMPT
-        RPROMPT="%1(j.%F{178}[%j].)%f"
+        RPROMPT+="%1(j.%F{178}[%j].)%f"
 
         pure_prompt="$PROMPT"
         pure_rprompt="$RPROMPT"
