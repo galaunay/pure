@@ -118,7 +118,7 @@ prompt_pure_preprompt_render() {
 	typeset -gA prompt_pure_vcs_info
         local repo_name="${prompt_pure_vcs_info[top]##*/}"
 	if [[ -n $prompt_pure_vcs_info[branch] ]]; then
-		preprompt_parts+=("%F{242}$repo_name%f%F{$git_color}"'[${prompt_pure_vcs_info[branch]}%F{yellow}${prompt_pure_git_dirty}${prompt_pure_git_arrows}%f'"%F{$git_color}]%f")
+		preprompt_parts+=("%F{242}$repo_name%f%F{$git_color}"'[${prompt_pure_vcs_info[branch]}%F{178}${prompt_pure_git_dirty}${prompt_pure_git_arrows}%f'"%F{$git_color}]%f")
 	fi
 
 	# Set the path.
@@ -127,7 +127,7 @@ prompt_pure_preprompt_render() {
         local repo_subdir="${${$(pwd -P)/$prompt_pure_vcs_info[top]/}/\//}"
         if [[ $repo_name ]]; then
             if [[ $repo_subdir ]]; then
-                preprompt_parts+=("%F{071}%${max_path_chars}<...<$repo_subdir%<<%f")
+                preprompt_parts+=("%F{green}%${max_path_chars}<...<$repo_subdir%<<%f")
             fi
         else
             preprompt_parts+=("%F{242}%${max_path_chars}<...<%~%<<%f")
@@ -454,13 +454,13 @@ prompt_pure_setup() {
 	add-zsh-hook preexec prompt_pure_preexec
 
 	# show username@host if logged in through SSH
-	[[ "$SSH_CONNECTION" != '' ]] && prompt_pure_username='%F{yellow}[%n@%m]%f'
+	[[ "$SSH_CONNECTION" != '' ]] && prompt_pure_username='%F{178}[%n@%m]%f'
 
 	# show username@host if root, with username in white
-	[[ $UID -eq 0 ]] && prompt_pure_username='%F{white}%n%f%F{yellow}[@%m]%f'
+	[[ $UID -eq 0 ]] && prompt_pure_username='%F{white}%n%f%F{178}[@%m]%f'
 
         # show screen session if adequat
-        [[ $STY ]] && prompt_pure_username="$prompt_pure_username%F{yellow}${STY[(ws:.:)-1]}%f"
+        [[ $STY ]] && prompt_pure_username="$prompt_pure_username%F{178}${STY[(ws:.:)-1]}%f"
 
 	# prompt turns red if the previous command didn't exit with 0
         zstyle ':prezto:module:editor:info:keymap:primary' format "${PURE_PROMPT_SYMBOL:-❯} "
