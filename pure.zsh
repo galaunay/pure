@@ -431,6 +431,9 @@ prompt_pure_setup() {
 	# disallow python virtualenvs from updating the prompt
 	export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+        # Tell prezto we can manage this prompt
+        zstyle ':prezto:module:prompt' managed 'yes'
+
 	prompt_opts=(subst percent)
 
 	# borrowed from promptinit, sets the prompt options in case pure was not
@@ -465,6 +468,8 @@ prompt_pure_setup() {
 	# prompt turns red if the previous command didn't exit with 0
         zstyle ':prezto:module:editor:info:keymap:primary' format "${PURE_PROMPT_SYMBOL:-❯} "
         zstyle ':prezto:module:editor:info:keymap:alternate' format "%F{178}${PURE_PROMPT_SYMBOL:-❯} %f"
+        zstyle ':prezto:module:editor:info:completing' format '...'
+
         PROMPT='%(?.%F{green}.%F{red})%B$editor_info[keymap]%b%f'
 
         # Make RPROMPT
@@ -473,6 +478,15 @@ prompt_pure_setup() {
         pure_prompt="$PROMPT"
         pure_rprompt="$RPROMPT"
 
+}
+
+function prompt_pure_preview {
+  local +h PROMPT=''
+  local +h RPROMPT=''
+  local +h SPROMPT=''
+
+  editor-info 2> /dev/null
+  prompt_preview_theme 'pure'
 }
 
 prompt_pure_setup "$@"
