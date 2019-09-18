@@ -468,7 +468,7 @@ prompt_pure_setup() {
 	# prompt turns red if the previous command didn't exit with 0
         zstyle ':prezto:module:editor:info:keymap:primary' format "${PURE_PROMPT_SYMBOL:-❯} "
         zstyle ':prezto:module:editor:info:keymap:alternate' format "%F{178}${PURE_PROMPT_SYMBOL:-❯} %f"
-        zstyle ':prezto:module:editor:info:completing' format '...'
+        # zstyle ':prezto:module:editor:info:completing' format '...'
 
         PROMPT='%(?.%F{green}.%F{red})%B$editor_info[keymap]%b%f'
 
